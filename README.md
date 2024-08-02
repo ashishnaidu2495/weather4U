@@ -13,7 +13,7 @@ The Weather Now is a web application designed to provide real-time weather updat
 
 ## Usage
 
-To use the Weather Now, follow these steps:
+To use the Weather4U, follow these steps:
 
 1. Open the `index.html` file in a web browser.
 2. In the navigation bar, click on "Home" to go back to the main page.
@@ -25,7 +25,7 @@ To use the Weather Now, follow these steps:
 
 ## Installation
 
-To run the Weather Now locally, follow these steps:
+To run the Weather4U locally, follow these steps:
 
 1. Clone or download the repository to your local machine.
 2. Open the `index.html` file in a web browser.
@@ -43,7 +43,7 @@ To run the Weather Now locally, follow these steps:
 
 ## Contributing
 
-Contributions to the Weather Now project are welcome! If you'd like to contribute, please follow these steps:
+Contributions to the Weather4U project are welcome! If you'd like to contribute, please follow these steps:
 
 1. Fork the repository.
 2. Create a new branch: `git checkout -b feature/your-feature-name`
