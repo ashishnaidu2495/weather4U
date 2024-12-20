@@ -1,37 +1,59 @@
-const options = {
-    method: 'GET',
-    headers: {
-        'x-RapidAPI-Key': 'b45e96323fmshf5e4bc50d3b8a90p1e091djsnfb21cde4eb87', // your API KEY here
-        'x-RapidAPI-Host': 'weather-by-api-ninjas.p.rapidapi.com'
+const API_KEY = 'a8850105f0c2db1e67720f653c8886ff'; // Replace with your API key
+
+// Event listener for button click
+document.getElementById('getWeather').addEventListener('click', () => {
+    const city = document.getElementById('city').value.trim();
+    
+    console.log("City entered:", city); // Log the city entered by the user
+    
+    // Check if city input is not empty
+    if (city) {
+        // Fetch weather data from OpenWeatherMap API
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`)
+            .then(response => {
+                console.log("API response received:", response); // Log the raw response object
+                
+                if (!response.ok) throw new Error('City not found');
+                return response.json();
+            })
+            .then(data => {
+                console.log("Parsed data from API:", data); // Log the parsed JSON data
+                
+                // Display weather data
+                document.getElementById('weatherInfo').style.display = 'block';
+                document.getElementById('cityName').textContent = `City: ${data.name}`;
+                document.getElementById('temperature').textContent = `Temperature: ${data.main.temp}°C`;
+                document.getElementById('description').textContent = `Weather: ${data.weather[0].description}`;
+                document.getElementById('humidity').textContent = `Humidity: ${data.main.humidity}%`;
+                document.getElementById('wind').textContent = `Wind Speed: ${data.wind.speed} m/s`;
+            })
+            .catch(err => {
+                console.log("Error occurred:", err.message); // Log the error message
+                alert('Error: ' + err.message);
+                document.getElementById('weatherInfo').style.display = 'none';
+            });
+    } else {
+        alert('Please enter a city name!');
     }
-};
-
-const getWeather = (city) => {
-    document.getElementById('cityName').innerHTML = city;
-    fetch('https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=' + city, options)
-        .then(response => response.json())
-        .then(response => {
-            console.log(response);
-            document.getElementById('temp').innerHTML = response.temp;
-            document.getElementById('temp2').innerHTML = response.temp;
-            document.getElementById('feels_like').innerHTML = response.feels_like;
-            document.getElementById('humidity').innerHTML = response.humidity;
-            document.getElementById('humidity2').innerHTML = response.humidity;
-            document.getElementById('min_temp').innerHTML = response.min_temp;
-            document.getElementById('max_temp').innerHTML = response.max_temp;
-            document.getElementById('wind_speed').innerHTML = response.wind_speed;
-            document.getElementById('wind_speed2').innerHTML = response.wind_speed;
-            document.getElementById('wind_degrees').innerHTML = response.wind_degrees;
-            document.getElementById('sunrise').innerHTML = response.sunrise;
-            document.getElementById('sunset').innerHTML = response.sunset;
-        })
-        .catch(err => console.error(err));
-}
-
-document.getElementById('submit').addEventListener('click', (e) => {
-    e.preventDefault();
-    getWeather(document.getElementById('city').value);
 });
 
-// Fetch the weather for an initial city
-getWeather('Delhi');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
